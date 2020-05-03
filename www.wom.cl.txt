@@ -1,0 +1,9 @@
+HTTP/1.1 302 Found
+Date: Sun, 03 May 2020 00:08:20 GMT
+Location: https://www.wom.cl/404
+Connection: close
+Content-Type: text/html; charset=iso-8859-1
+Set-Cookie: TS01a413f4=01ff123a719f0c939ad3e26513e7f1055a1715e0bf88dc16a8c1c9b3d8ec93805087d5a0e54c541833d43fd6021e030b282b1876f1; Path=/
+Transfer-Encoding: chunked
+
+11a

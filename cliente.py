@@ -30,7 +30,7 @@ while(flag):
 
 		#conexión UDP con el servidor
 		UDP_socketCliente = sock.socket(sock.AF_INET, sock.SOCK_DGRAM)
-		respuesta_conexion = input("Para iniciar transferencia en el puerto Z ingrese OK: ")
+		respuesta_conexion = "OK"
 		UDP_socketCliente.sendto(respuesta_conexion.encode(),(dir_servidor,int(puerto_z)))
 
 		header, _ = UDP_socketCliente.recvfrom(2048)
@@ -39,7 +39,7 @@ while(flag):
 		nombre_archivo = url + ".txt"
 		escribir_archivo(nombre_archivo,str_header)
 
-		print(str_header)
+		#print(str_header)
 		UDP_socketCliente.close()
 
 		
