@@ -19,8 +19,10 @@ while(flag):
 	url = input('Ingrese la URL: ')
 
 	if(url.upper() == "TERMINATE"):
-		TCP_socketCliente.send(url.encode())
+		print("terminar ")
 		flag= False
+		TCP_socketCliente.send(url.encode())
+		TCP_socketCliente.close()
 	else:
 
 		TCP_socketCliente.send(url.encode())

@@ -33,7 +33,7 @@ print("Servidor TCP escuchando en puerto", puerto_servidor)
 
 flag = True
 cache  = []
-
+termino = 0
 while(flag):
 	#solo recibe archivos comunicación
 	TCP_socketCliente, dirCliente = TCP_socketServ.accept()
@@ -41,13 +41,15 @@ while(flag):
 	url = TCP_socketCliente.recv(2048).decode()
 	print("Se recibio:", url)
 
+	condicion, header_cache = in_cache(url,cache)
+
 	if (url.upper() == "TERMINATE"):
 		TCP_socketCliente.close()
+		termino =1
 		#flag = False
 		#se finaliza la conexión del servidor
 		#obtener su header y moficiar posicion de cache
-	condicion, header_cache = in_cache(url,cache)
-	if (condicion):
+	elif (condicion):
 		header = header_cache
 	else:
 		#Se obtiene el header con conexión directa a la web
@@ -62,27 +64,29 @@ while(flag):
 		add_cache(cache,(url,header))
 		httpServ.close()
 
-	print(cache)	
-		
-	#se envia nuevo puerto donde existirá la conexión UDP
-	puerto_z = '55000'
-	#se responde por TCP
-	TCP_socketCliente.send(puerto_z.encode())
-	UDP_socketServ = sock.socket(sock.AF_INET, sock.SOCK_DGRAM)
-	UDP_socketServ.bind(('', int(puerto_z)))
-	print("Servidor escuchando en el puerto", puerto_z)
-	#ahora aqui escucha en el servidor UDP y recibe.
-	respuestaUDP, dirClienteUDP = UDP_socketServ.recvfrom(2048)
-	respUDP = respuestaUDP.decode()
-	if (respUDP == "OK"):
-		#se envia el header al cliente
-		UDP_socketServ.sendto(header, dirClienteUDP)
-		UDP_socketServ.close()
-	#recibe OK y le envia el header
-	#se genera una nueva conexión UDP
-	#enviar header de URL mediante UDP
+	if termino == 0: 
+		print(cache)	
+		#se envia nuevo puerto donde existirá la conexión UDP
+		puerto_z = '55000'
+		#se responde por TCP
+		TCP_socketCliente.send(puerto_z.encode())
+		UDP_socketServ = sock.socket(sock.AF_INET, sock.SOCK_DGRAM)
+		UDP_socketServ.bind(('', int(puerto_z)))
+		print("Servidor escuchando en el puerto", puerto_z)
+		#ahora aqui escucha en el servidor UDP y recibe.
+		respuestaUDP, dirClienteUDP = UDP_socketServ.recvfrom(2048)
+		respUDP = respuestaUDP.decode()
+		if (respUDP == "OK"):
+			#se envia el header al cliente
+			UDP_socketServ.sendto(header, dirClienteUDP)
+			UDP_socketServ.close()
+	else:
+		termino = 0
+		#recibe OK y le envia el header
+		#se genera una nueva conexión UDP
+		#enviar header de URL mediante UDP
 
-	#aqui crear ciclo hasta que diga terminate.
+		#aqui crear ciclo hasta que diga terminate.
 
 		#ver el cierre 
-		TCP_socketCliente.close()
+		#TCP_socketCliente.close()
