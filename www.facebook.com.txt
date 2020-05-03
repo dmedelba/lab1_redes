@@ -1,9 +1,0 @@
-HTTP/1.1 301 Moved Permanently
-Location: http://www.facebook.com/
-Content-Type: text/html; charset="utf-8"
-X-FB-Debug: 3bnxDOOaKBfhVoRUWcIc/FEN8q6yRxVN3IANzrPmo7ElXbExxSRPBs6yZyJla/FWFacwPM2NWE7W/7gFkwoWZg==
-Date: Sat, 02 May 2020 23:49:21 GMT
-Alt-Svc: h3-27=":443"; ma=3600
-Connection: keep-alive
-Content-Length: 0
-

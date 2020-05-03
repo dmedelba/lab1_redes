@@ -1,9 +1,0 @@
-HTTP/1.0 400 Bad Request
-Server: AkamaiGHost
-Mime-Version: 1.0
-Content-Type: text/html
-Content-Length: 209
-Expires: Sun, 03 May 2020 00:07:19 GMT
-Date: Sun, 03 May 2020 00:07:19 GMT
-Connection: close
-
