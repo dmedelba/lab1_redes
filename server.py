@@ -1,7 +1,7 @@
 import socket as sock
 
 #Rango de puertos disponibles 9152-65535 
-puerto_servidor =65000
+puerto_servidor =65010
 
 #Función que agrega la tupla (url, header) al cache del servidor
 def add_cache(lista, elemento):

@@ -6,7 +6,7 @@ def escribir_archivo(nombre_archivo,header):
 	archivo.write(header)
 	archivo.close()
 
-puerto_servidor =65000
+puerto_servidor =65010
 
 dir_servidor = 'localhost'
 flag= True
